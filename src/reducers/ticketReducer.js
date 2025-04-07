@@ -2,6 +2,7 @@ export default function ticketReducer(state, action) {
   switch (action.type) {
     case "ADD_TICKET":
       return { ...state, tickets: [...state.tickets, action.payload] };
+
     case "UPDATE_TICKET":
       return {
         ...state,
@@ -10,6 +11,7 @@ export default function ticketReducer(state, action) {
         ),
         editingTicket: null,
       };
+
     case "DELETE_TICKET":
       if (state.editingTicket && state.editingTicket.id === action.payload.id) {
         return {
@@ -30,8 +32,13 @@ export default function ticketReducer(state, action) {
 
     case "SET_EDITING_TICKET":
       return { ...state, editingTicket: action.payload };
+
     case "CLEAR_EDITING_TICKET":
       return { ...state, editingTicket: null };
+
+    case "SET_SORT_PREFERENCE":
+      return { ...state, sortPreference: action.payload };
+
     default:
       return state;
   }
